@@ -2,6 +2,12 @@
 1.触发panic
 2.捕获 panic
 	recover函数(有一个条件，就是它必须在 defer 函数中才能生效，其他作用域下，它是不工作的。)
+3.无法跨携程
+	但是这个 defer 在多个协程之间是没有效果，在子协程里触发 panic，只能触发自己协程内的 defer，而不能调用 main 协程里的 defer 函数的。
+
+
+	·panic：抛出异常，使程序崩溃
+	·recover：捕获异常，恢复程序或做收尾工作
 */
 
 package main
