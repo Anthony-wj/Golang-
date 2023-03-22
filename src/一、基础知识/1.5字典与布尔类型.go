@@ -23,42 +23,63 @@ package main
 
 import "fmt"
 
-func main() {
-	// 声明1方法  -->不建议拆开
-	// var scores map[string]int = map[string]int{"English": 80, "Chinese": 59}
-	// 声明2方法
-	// scores := map[string]int{"English": 90, "Math": 60}
-	// 声明3方法  --》推荐
+type demoMap struct {
+}
+
+func (demo demoMap) demo01() {
+	var scores map[string]int
+	if scores == nil {
+		scores = make(map[string]int)
+	}
+	scores["math"] = 90
+	fmt.Printf("scores: %v\n", scores)
+}
+
+func (demo demoMap) demo02() {
+	scores := map[string]int{"math": 60}
+	fmt.Printf("scores: %v\n", scores)
+}
+
+func (demo demoMap) demo03() {
+	// 强力推荐
 	scores := make(map[string]int)
-	scores["English"] = 85
-	scores["Chinese"] = 59
-
+	scores["math"] = 91
+	fmt.Printf("scores: %v\n", scores)
+}
+func (demo demoMap) demo04() {
 	// 判断key是否存在
-	// math, ok := scores["Math"]
-	// if ok {
-	// 	fmt.Printf("math: %v\n", math)
-	// } else {
-	// 	fmt.Println("math不存在")
-	// }
+	scores := map[string]int{"math": 66}
+	if math, ok := scores["matth"]; ok {
+		fmt.Printf("math: %v\n", math)
+	} else {
+		fmt.Println("math不存在")
+	}
+}
 
-	// if math, ok := scores["math"]; ok {
-	// 	fmt.Printf("math 的值是: %d", math)
-	// } else {
-	// 	fmt.Println("math 不存在")
-	// }
-
+func (demo demoMap) demo05() {
 	// 遍历字典
-	// 1获取key 和 value
-	for subject, score := range scores {
-		fmt.Printf("key: %s, value: %d\n", subject, score)
+	scores := make(map[string]int)
+	scores["Math"] = 100
+	scores["English"] = 99
+	scores["Chinese"] = 98
+	// k v遍历
+	for k, v := range scores {
+		fmt.Printf("k: %v\t", k)
+		fmt.Printf("v: %v\n", v)
 	}
-	// 2只获取key
-	for subject := range scores {
-		fmt.Printf("subject: %v\n", subject)
-	}
-	// 3.只获取value
-	for _, score := range scores {
-		fmt.Printf("score: %v\n", score)
 
+	// 只遍历key
+	for k := range scores {
+		fmt.Printf("k: %v\n", k)
 	}
+
+	// 只遍历value
+	for _, v := range scores {
+		fmt.Printf("v: %v\n", v)
+	}
+}
+
+func main() {
+	demo := demoMap{}
+	demo.demo05()
 }

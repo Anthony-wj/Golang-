@@ -108,10 +108,40 @@ package main
 
 import "fmt"
 
-func main() {
-	score := 80
-	switch {
-	case score < 60:
-		fmt.Println("不及格")
+type demoSwitch struct {
+}
+
+func (demo demoSwitch) demo01() {
+	education := "本科"
+
+	switch education {
+	case "博士":
+		fmt.Println("我是博士生")
+	case "研究生":
+		fmt.Println("我是研究生")
+	case "本科":
+		fmt.Println("我是本科生")
+	case "小学":
+		fmt.Println("我是小学生")
 	}
+}
+
+func (demo demoSwitch) demo02() {
+	// case后接多个示例
+	month := 2
+	switch month {
+	case 3, 4, 5:
+		fmt.Println("春天")
+	case 6, 7, 8:
+		fmt.Println("夏天")
+	case 9, 10, 11:
+		fmt.Println("秋天")
+	case 12, 1, 2:
+		fmt.Println("冬天")
+	}
+}
+
+func main() {
+	demo := demoSwitch{}
+	demo.demo01()
 }

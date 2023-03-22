@@ -15,24 +15,56 @@ package main
 
 import (
 	"fmt"
+	"unsafe"
 )
 
+type demoByte struct {
+}
+
+func (demo demoByte) demo01() {
+	// byte和uint8本质上没区别
+	var a byte = 18
+	fmt.Printf("a: %T %v\n", a, a)
+	fmt.Printf("a 占用%d 个字节数", unsafe.Sizeof(a))
+}
+
+func (demo demoByte) demo02() {
+	// rune和uint32本质上没区别
+	var a rune = 18
+	fmt.Printf("a: %T %v\n", a, a)
+	fmt.Printf("unsafe.Sizeof(a): %v\n", unsafe.Sizeof(a))
+}
+
+func (demo demoByte) demo03() {
+	// byte和rune都是字符类型
+	// string本质上就是byte数组
+	var a [5]byte = [5]byte{104, 101, 108, 108, 111}
+	fmt.Printf("a: %s\n", a)
+	var b [5]rune = [5]rune{104, 101, 108, 108, 111}
+	fmt.Printf("b: %c\n", b)
+}
+
+func (demo demoByte) demo04() {
+	// "" 会转义字符串
+	// `` 会忽略转义字符
+	var mystring01 string = "\\r\\n"
+	fmt.Printf("mystring01: %v\n", mystring01)
+	var mystring02 string = `\r\n`
+	fmt.Printf("mystring02: %v\n", mystring02)
+}
+
 func main() {
-	// var a byte = 65
-	// fmt.Printf("a: %c\n", a)
-	// var b uint = 66
-	// fmt.Printf("b: %c\n", b)
-	// var c rune = 'A'
-	// fmt.Printf("a 占用%d 个字节数, c 占用%d 个字节数", unsafe.Sizeof(a), unsafe.Sizeof(c))
+	demo := demoByte{}
+	demo.demo04()
 
 	// var mystr01 string = "hello"
 	// var mystr02 [5]byte = [5]byte{104, 101, 108, 108, 111}
 	// fmt.Printf("mystr01: %s\n", mystr01)
 	// fmt.Printf("mystr02: %s\n", mystr02)
 
-	var mystr01 string = "\\r\\n"
-	var mystr02 string = `\r\n`
-	fmt.Println(mystr01)
-	fmt.Println(mystr02)
+	// var mystr01 string = "\\r\\n"
+	// var mystr02 string = `\r\n`
+	// fmt.Println(mystr01)
+	// fmt.Println(mystr02)
 
 }

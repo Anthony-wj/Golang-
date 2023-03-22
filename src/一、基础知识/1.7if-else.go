@@ -25,3 +25,47 @@
         fmt.Println("已经成年了")
     }
 */
+
+package main
+
+import "fmt"
+
+type demoIf struct{}
+
+func (demo demoIf) demo01() {
+	a := 59
+	if a < 60 {
+		fmt.Println("不及格")
+	} else {
+		fmt.Println("及格")
+	}
+}
+
+func (demo demoIf) demo02() {
+	a := 85
+	if a < 60 {
+		fmt.Println("不及格")
+	} else if a < 80 {
+		fmt.Println("良好")
+	} else {
+		fmt.Println("优秀")
+	}
+}
+
+func (demo demoIf) demo03() {
+	a := 65
+	if a < 60 {
+		fmt.Println("挂科了")
+	} else {
+		if a < 90 {
+			fmt.Println("绩点低喽")
+		} else {
+			fmt.Println("有保研希望")
+		}
+	}
+}
+
+func main() {
+	demo := demoIf{}
+	demo.demo03()
+}

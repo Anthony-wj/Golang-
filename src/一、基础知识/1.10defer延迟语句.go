@@ -13,11 +13,20 @@ package main
 
 import "fmt"
 
+type demoDefer struct{}
+
+func (demo demoDefer) demo01() {
+	defer fmt.Println("end")
+	fmt.Println("start")
+}
+
 func myfunc() {
 	fmt.Println("B")
 }
 
 func main() {
+	demo := demoDefer{}
+	demo.demo01()
 	// defer myfunc()
 	// fmt.Println("A")
 
